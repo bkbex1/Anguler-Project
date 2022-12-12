@@ -17,7 +17,7 @@ export class FrontendComponent implements OnInit{
    return this.posts.filter(e=>e.userId==userId)
   }
 
-  constructor(private userSurvise:UsersService,private postSurvice:PostsService){}
+  constructor(private userSurvise:UsersService, private postSurvice:PostsService){}
 
   ngOnInit(): void {
     this.userSurvise.getUsers().subscribe({

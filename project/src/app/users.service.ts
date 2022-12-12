@@ -8,7 +8,11 @@ export interface IAddress {
   "city": String,
   "zipcode": String,
 }
-
+export interface ICompany{
+  "name": number,
+  "catchPhrase": String,
+  "bs": String,
+}
 export interface IUser{
   "id": number,
   "name": String,
@@ -16,6 +20,8 @@ export interface IUser{
   "email": String,
   "address": IAddress,
   "phone": String,
+  "company": ICompany,
+  "website": string
 }
 
 @Injectable({
@@ -28,5 +34,9 @@ export class UsersService {
 
   getUsers(): Observable<IUser[]>{
     return this.httpClient.get<IUser[]>("https://jsonplaceholder.typicode.com/users")
+  }
+
+  getUserById(id:string): Observable<IUser>{
+    return this.httpClient.get<IUser>("https://jsonplaceholder.typicode.com/users/"+id)
   }
 }

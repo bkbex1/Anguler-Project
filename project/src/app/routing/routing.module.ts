@@ -9,30 +9,6 @@ import { ProfileComponent } from '../logedin/profile/profile.component';
 import { AboutComponent } from '../core/about/about.component';
 
 const routes: Route[] = [
-  {
-  path:"home",
-  component:HomeComponent,
-},
-{
-  path:"log-in",
-  component:LogInComponent
-}, 
-{
-  path:"register",
-  component:RegisterComponent
-},
-{
-  path:"account",
-  component:ProfileComponent
-},
-{
-  path:"friends",
-  component:FriendsComponent
-},
-{
-  path:"about",
-  component:AboutComponent
-}
 ]
 
 @NgModule({
