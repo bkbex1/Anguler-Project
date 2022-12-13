@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { UserService } from '../user.service';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [UserService],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    
   ]
 })
 export class CoreModule { }

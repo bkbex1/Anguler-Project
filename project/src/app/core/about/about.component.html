@@ -7,22 +7,36 @@
 		<div class="row">
 			<div class="col-lg-7">	
 				<div class="contact">
-					<form class="form" name="enq" method="post" action="contact.php" onsubmit="return validation();">
+					<form #contactForm="ngForm" class="form" name="enq" method="post" action="contact.php" onsubmit="return validation();">
 						<div class="row">
 							<div class="form-group col-md-6">
-								<input type="text" name="name" class="form-control" placeholder="Name" required="required">
+								<input type="text" minlength="3" #name="ngModel" required ngModel name="name" class="form-control" placeholder="Name" required="required">
 							</div>
 							<div class="form-group col-md-6">
-								<input type="email" name="email" class="form-control" placeholder="Email" required="required">
+								<input type="email" #email="ngModel" required ngModel email name="email" class="form-control" placeholder="Email" required="required">
+							</div>
+							<ng-container *ngIf="name.touched && name.invalid">
+								<div *ngIf="name.errors?.['required']"  class="alert alert-danger">
+									Name input is required!
+								</div>
+								<div *ngIf="name.errors?.['minlength']" class="alert alert-danger" >
+									Name must be longer than 3 symbols!
+								</div>
+							</ng-container>
+							<ng-container *ngIf="email.touched && email.invalid">
+								<div class="alert alert-danger">
+									Please enter a valid email!
+								</div>
+							</ng-container>
+							
+							<div class="form-group col-md-12">
+								<input type="text" #subject="ngModel" required ngModel name="subject" class="form-control" placeholder="Subject" required="required">
 							</div>
 							<div class="form-group col-md-12">
-								<input type="text" name="subject" class="form-control" placeholder="Subject" required="required">
-							</div>
-							<div class="form-group col-md-12">
-								<textarea rows="6" name="message" class="form-control" placeholder="Your Message" required="required"></textarea>
+								<textarea rows="6" #message="ngModel" required ngModel name="message" class="form-control" placeholder="Your Message" required="required"></textarea>
 							</div>
 							<div class="col-md-12 text-center">
-								<button type="submit" value="Send message" name="submit" id="submitButton" class="btn btn-contact-bg" title="Submit Your Message!">Send Message</button>
+								<button [disabled]='contactForm.invalid' type="submit" value="Send message" name="submit" id="submitButton" class="btn btn-contact-bg" title="Submit Your Message!">Send Message</button>
 							</div>
 						</div>
 					</form>

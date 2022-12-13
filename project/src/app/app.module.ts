@@ -16,6 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FrontendComponent } from './frontend/frontend.component';
 import { UsersService } from './users.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FndUserProfileComponent } from './logedin/fnd-user-profile/fnd-user-profile.component';
+import { LogedinModule } from './logedin/logedin.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,14 +33,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FriendsComponent,
     LogInComponent,
     RegisterComponent,
-    FrontendComponent, 
+    FrontendComponent,
+    NotFoundComponent, 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-
+    LogedinModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

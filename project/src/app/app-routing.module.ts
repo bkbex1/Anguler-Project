@@ -8,11 +8,16 @@ import { FrontendComponent } from './frontend/frontend.component';
 import { FndUserProfileComponent } from './logedin/fnd-user-profile/fnd-user-profile.component';
 import { FriendsComponent } from './logedin/friends/friends.component';
 import { ProfileComponent } from './logedin/profile/profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
     path:"home",
     component:HomeComponent,
+  },
+  {
+    path:"",
+    component:HomeComponent
   },
   {
     path:"log-in",
@@ -37,6 +42,10 @@ const routes: Routes = [
   {
     path:"about",
     component:AboutComponent
+  },
+  {
+    path:"**",
+    component:NotFoundComponent
   }
 ];
 

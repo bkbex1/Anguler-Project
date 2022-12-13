@@ -10,11 +10,11 @@
         <li><a routerLink="/friends" class="nav-link px-2 text-white">Friends</a></li>
         <li><a routerLink="/about" class="nav-link px-2 text-white">About</a></li>
       </ul>
-      <div class="text-end">
+      <div class="text-end" *ngIf="!isLogged">
         <button routerLink="/log-in" type="button" class="btn btn-outline-light me-2">Login</button>
         <button routerLink="/register" type="button" class="btn btn-warning">Register</button>
       </div>
-      <div class="text-end">
+      <div class="text-end" *ngIf="isLogged">
         <button routerLink="/account" type="button" class="btn btn-outline-light me-2">My Account</button>
         <button routerLink="/log-out" type="button" class="btn btn-warning">Log Out</button>
       </div>

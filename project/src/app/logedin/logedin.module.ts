@@ -6,7 +6,7 @@ import { FndUserProfileComponent } from './fnd-user-profile/fnd-user-profile.com
 
 @NgModule({
   declarations: [
-    FndUserProfileComponent
+    FndUserProfileComponent,
   ],
   imports: [
     CommonModule
