@@ -9,8 +9,10 @@ import { IUser, UsersService } from 'src/app/users.service';
 
 
 export class FriendsComponent {
-  users!:IUser[]
 
+
+  users!:IUser[]
+  isLogged = localStorage.getItem("isLogged");
   constructor(private userSurvise:UsersService){}
   ngOnInit(): void {
     this.userSurvise.getUsers().subscribe({

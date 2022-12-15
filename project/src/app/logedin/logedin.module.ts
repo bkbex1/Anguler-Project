@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FndUserProfileComponent } from './fnd-user-profile/fnd-user-profile.component';
 
 
-
 @NgModule({
   declarations: [
     FndUserProfileComponent,

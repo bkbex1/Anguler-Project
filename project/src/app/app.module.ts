@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,12 +13,13 @@ import { LogInComponent } from './core/log-in/log-in.component';
 import { RegisterComponent } from './core/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FrontendComponent } from './frontend/frontend.component';
-import { UsersService } from './users.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FndUserProfileComponent } from './logedin/fnd-user-profile/fnd-user-profile.component';
 import { LogedinModule } from './logedin/logedin.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
+import { StorageService } from './storage.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     FrontendComponent,
     NotFoundComponent, 
+
   ],
   imports: [
     BrowserModule,
@@ -43,8 +44,10 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     LogedinModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [ StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

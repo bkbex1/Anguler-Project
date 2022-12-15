@@ -16,7 +16,7 @@ export class HeaderComponent{
   constructor(public userService:UserService){}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    console.log("header")
   }
 
   loginHandle(): void{
