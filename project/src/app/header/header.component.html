@@ -16,7 +16,7 @@
       </div>
       <div class="text-end" *ngIf="isLogged">
         <button routerLink="/account" type="button" class="btn btn-outline-light me-2">My Account</button>
-        <button routerLink="/log-out" type="button" class="btn btn-warning">Log Out</button>
+        <button (click)="logOutHandle()" routerLink="" type="button" class="btn btn-warning">Log Out</button>
       </div>
     </div>
   </div>

@@ -15,15 +15,11 @@ export class HeaderComponent{
 
   constructor(public userService:UserService){}
 
-  ngOnInit(): void {
-    console.log("header")
-  }
-
   loginHandle(): void{
-    this.userService.logIn
+    this.userService.logIn();
   }
   logOutHandle(): void{
-    this.userService.logOut
+    this.userService.logOut();
   }
 
 }

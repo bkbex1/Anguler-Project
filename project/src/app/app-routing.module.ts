@@ -9,11 +9,15 @@ import { FndUserProfileComponent } from './logedin/fnd-user-profile/fnd-user-pro
 import { FriendsComponent } from './logedin/friends/friends.component';
 import { ProfileComponent } from './logedin/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UserService } from './user.service';
 
 const routes: Routes = [
   {
     path:"home",
     component:HomeComponent,
+    data:{
+      // isLogged: userSurvies.isLogged;
+    }
   },
   {
     path:"",
@@ -53,4 +57,9 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+  constructor(userSurvies:UserService){
+
+  }
+ }
