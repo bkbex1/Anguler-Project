@@ -7,7 +7,8 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a routerLink="/home" class="nav-link px-2 text-white">Home</a></li>
-        <li><a routerLink="/friends" class="nav-link px-2 text-white">Friends</a></li>
+        <li *ngIf="isLogged"><a routerLink="/friends" class="nav-link px-2 text-white">Friends</a></li>
+        <li *ngIf="!isLogged"><a routerLink="/friends" class="nav-link px-2 text-white">Users</a></li>
         <li><a routerLink="/about" class="nav-link px-2 text-white">About</a></li>
       </ul>
       <div class="text-end" *ngIf="!isLogged">

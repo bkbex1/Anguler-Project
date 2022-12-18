@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './core/about/about.component';
 import { HomeComponent } from './core/home/home.component';
 import { LogInComponent } from './core/log-in/log-in.component';
+import { PostComponent } from './core/post/post.component';
 import { RegisterComponent } from './core/register/register.component';
-import { FrontendComponent } from './frontend/frontend.component';
 import { FndUserProfileComponent } from './logedin/fnd-user-profile/fnd-user-profile.component';
 import { FriendsComponent } from './logedin/friends/friends.component';
 import { ProfileComponent } from './logedin/profile/profile.component';
@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path:"friends/:id",
     component:FndUserProfileComponent
+  },
+  {
+    path:"post/:id/:picId",
+    component:PostComponent
   },
   {
     path:"about",

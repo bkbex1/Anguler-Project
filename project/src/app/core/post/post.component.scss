@@ -1,0 +1,28 @@
+.center{
+    width: 100px;
+    margin: 50px auto
+}
+
+article{
+    width: 55%;
+    height: 100vh;
+    display: inline-block;
+    margin: 30px;
+}
+.card{
+    width: 100%;
+
+    display: inline-block;
+}
+.left{
+    width: 30%;
+    display: inline-block;
+    float: right;
+    margin: 20px;
+}
+.col-sm-6{
+    width: 100%;
+}
+.d-flex{
+    flex-direction: column
+}

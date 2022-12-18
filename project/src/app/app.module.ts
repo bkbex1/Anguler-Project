@@ -8,11 +8,9 @@ import { MainComponent } from './main/main.component';
 import { HomeComponent } from './core/home/home.component';
 import { ProfileComponent } from './logedin/profile/profile.component';
 import { AboutComponent } from './core/about/about.component';
-import { FriendsComponent } from './logedin/friends/friends.component';
 import { LogInComponent } from './core/log-in/log-in.component';
 import { RegisterComponent } from './core/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FrontendComponent } from './frontend/frontend.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogedinModule } from './logedin/logedin.module';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -31,23 +29,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     ProfileComponent,
     AboutComponent,
-    FriendsComponent,
     LogInComponent,
     RegisterComponent,
-    FrontendComponent,
-    NotFoundComponent, 
-
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    LogedinModule,
     FormsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     FontAwesomeModule
+  ],
+  exports:[
+    HomeComponent,
   ],
   providers: [ StorageService],
   bootstrap: [AppComponent]

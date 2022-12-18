@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 export interface IAddress {
   "street": String,
@@ -21,7 +21,15 @@ export interface IUser{
   "address": IAddress,
   "phone": String,
   "company": ICompany,
-  "website": string
+  "website": string,
+}
+export interface IPic{
+  "id": number,
+  "author": String,
+  "width": number,
+  "height": number,
+  "url": string,
+  "download_url": string,
 }
 
 @Injectable({
@@ -31,7 +39,7 @@ export interface IUser{
 export class UsersService {
 
   constructor(private httpClient:HttpClient) { }
-
+  
   getUsers(): Observable<IUser[]>{
     return this.httpClient.get<IUser[]>("https://jsonplaceholder.typicode.com/users")
   }
@@ -39,4 +47,6 @@ export class UsersService {
   getUserById(id:string): Observable<IUser>{
     return this.httpClient.get<IUser>("https://jsonplaceholder.typicode.com/users/"+id)
   }
+
+
 }

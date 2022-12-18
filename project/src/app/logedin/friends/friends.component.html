@@ -1,19 +1,15 @@
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <div class="mb-3">
-                <h5 class="card-title">Contact List <span class="text-muted fw-normal ms-2" *ngIf="!!users.length">{{users.length}}</span></h5>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
-                <div>
-                    <a href="#" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
-                </div>
+            <div class="mb-3" *ngIf="users.length">
+                <h5 class="card-title">Contact List <span class="text-muted fw-normal ms-2">{{users.length}}</span></h5>
             </div>
         </div>
     </div>
-    <div *ngIf="users" class="row">
+    <div *ngIf="!users">
+        <mat-spinner></mat-spinner>
+    </div>
+        <div *ngIf="users" class="row">
             <div class="col-xl-3 col-sm-6" *ngFor="let user of users">
                 <div class="card">
                     <div class="card-body">
@@ -29,17 +25,12 @@
                             <p class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i> {{user.email}}</p>
                             <p class="text-muted mb-0 mt-2"><i class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"></i> {{user.address.city}}</p>
                         </div>
-                        <div class="d-flex gap-2 pt-4">
+                        <div class="d-flex gap-2 pt-4" *ngIf="isLogged">
                             <button type="button" [routerLink]="['/friends', user.id]" class="btn btn-soft-primary btn-sm w-50"><i class="bx bx-user me-1"></i> Profile</button>
                             <button type="button" class="btn btn-primary btn-sm w-50"><i class="bx bx-message-square-dots me-1"></i> Contact</button>
                         </div>
                     </div>
                 </div>
-
         </div>
-
     </div>
-    <div *ngIf="!users">
-        <mat-spinner></mat-spinner>
     </div>
-</div>
