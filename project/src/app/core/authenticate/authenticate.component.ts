@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-authenticate',
@@ -10,10 +10,10 @@ export class AuthenticateComponent implements OnInit {
 
   isAuthenticating = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.authService.getProfile().subscribe({
+    this.userService.getProfile().subscribe({
       next: () => {
         this.isAuthenticating = false;
       },

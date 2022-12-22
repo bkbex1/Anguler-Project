@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IUser } from './sheared/interfaces';
+import { BehaviorSubject, catchError, filter, Observable, Subscription, tap, throwError } from 'rxjs';
+import { bootUser, IUser } from './sheared/interfaces';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -9,29 +9,68 @@ import { StorageService } from './storage.service';
 })
 
 export class UserService {
-  isLogged: boolean = false;
+  // isLogged: boolean = false;
   
   user: IUser | null = null;
+  bootUser:bootUser|null = null;
+  
+  private user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
+  user$ = this.user$$.asObservable().pipe(
+    filter((val): val is IUser | null => val !== undefined)
+  );
+  subscription: Subscription;
 
-  get isLoggedIn() {
+
+  get isLoggedIn():boolean {
     return this.user !== null;
   }
 
   constructor(private storage:StorageService, private http:HttpClient) { 
-    this.isLogged = this.storage.getItem("isLogged")
+    this.subscription = this.user$.pipe(filter((val):val is IUser|null=>val!==undefined)).subscribe(user => {
+      this.user = user;
+    });
   }
 
-  logIn(email: string, password: string):Observable<IUser>{
-    this.storage.setItem("isLogged", true)
-    return this.http.post<IUser>('https://dummyjson.com/auth/login', { email, password });
-  
-  }
+  logIn(name: string, password: string):Observable<IUser>{
+
+    return this.http.get<IUser>('https://dummyjson.com/users/search?q='+name)
+    .pipe(tap(user => this.user$$.next(user)));;
+
+    // return this.http.post<IUser>('https://dummyjson.com/auth/login', { email, password });
+
+    // return this.http.post<IUser>('https://dummyjson.com/auth/login', {
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     username: name,
+    //     password: password,
+    // // expiresInMins: 60, // optional
+    // })
+      }
+
   logOut():void{
+    this.user$$.next(null)
     this.user = null;
-    this.storage.setItem("isLogged", false)
   }
 
-  register(username: string, email: string, password: string, rePassword: string, tel?: string) {
-    return this.http.post<IUser>('/api/register', { username, email, password, rePassword, tel })
+  register(username: string, email: string, password: string, rePassword: string) {
+    return this.http.get<IUser>('https://dummyjson.com/users/search?q='+username)
+    .pipe(tap(user => this.user$$.next(user)));
+
+    // return this.http.post<IUser>('/api/register', { username, email, password, rePassword, tel })
+
+  }
+
+  getProfile() {
+    return this.http.get<bootUser>('https://dummyjson.com/users/search?q='+"Terry")
+    // return this.http.get<IUser>('https://dummyjson.com/auth/login')
+      .pipe(
+        tap(user => {
+          this.user$$.next(user.users[0])
+        }),
+        catchError((err) => {
+          this.user$$.next(null);
+          return throwError(() => err);
+        })
+      );
   }
 }

@@ -19,16 +19,9 @@ export class LogInComponent {
   }
 
   logInHandle(logInForm:NgForm): void{
-    const {email, password} = logInForm.value;
-    this.userService.logIn(email, password).subscribe(user=>{
-      this.userService.user = user;
-      const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
-      this.router.navigate([returnUrl]);
+    const {name, password} = logInForm.value;
+    this.userService.logIn(name, password).subscribe(user=>{
+      this.router.navigate(["/account"]);
     })
-
-    
-
   }
-
-
 }

@@ -11,15 +11,14 @@ import { UserService } from '../../user.service';
 export class HeaderComponent{
 
   get isLogged(): boolean {
-    return this.userService.isLogged;
+    return this.userService.isLoggedIn;
   }
 
   constructor(public userService:UserService, private router: Router, private UserService: UserService){}
 
   logOutHandle(): void{
-    this.UserService.user = null;
+    this.userService.user = null;
     this.router.navigate(['/']);
-    this.userService.logOut();
   }
 
 }

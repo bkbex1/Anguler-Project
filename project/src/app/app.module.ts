@@ -22,6 +22,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { HomeComponent } from './core/home/home.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { PostComponent } from './core/post/post.component';
+import { AuthenticateComponent } from './core/authenticate/authenticate.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostComponent } from './core/post/post.component';
     NotFoundComponent,
     PostComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AuthenticateComponent
   ],
   imports: [
     CoreModule,
@@ -50,7 +52,6 @@ import { PostComponent } from './core/post/post.component';
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     FontAwesomeModule,
-
   ],
   exports:[
     AppComponent,

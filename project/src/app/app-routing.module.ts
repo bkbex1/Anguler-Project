@@ -17,11 +17,17 @@ const routes: Routes = [
   {
     path:"home",
     resolve: {allPosts:StartResolver},
+    canActivate: [AuthActivate],
     component:HomeComponent,
+    data: {
+      title: 'Home',
+      loginRequired: false
+    }
   },
   {
     path:"",
-    component:HomeComponent
+    canActivate: [AuthActivate],
+    component:HomeComponent,
   },
   {
     path:"log-in",
@@ -43,27 +49,56 @@ const routes: Routes = [
   },
   {
     path:"account",
-    component:ProfileComponent
+    canActivate: [AuthActivate],
+    component:ProfileComponent,
+    data: {
+      title: 'Account',
+      loginRequired: true
+    }
   },
   {
     path:"friends",
-    component:FriendsComponent
+    canActivate: [AuthActivate],
+    component:FriendsComponent,
+    data: {
+      title: 'Friends',
+      loginRequired: false
+    }
   },
   {
     path:"friends/:id",
-    component:FndUserProfileComponent
+    canActivate: [AuthActivate],
+    component:FndUserProfileComponent,
+    data: {
+      title: 'Friend',
+      loginRequired: true
+    }
   },
   {
     path:"post/:idPost/:picId",
-    component:PostComponent
+    canActivate: [AuthActivate],
+    component:PostComponent,
+    data: {
+      title: 'Post',
+      loginRequired: false
+    }
   },
   {
     path:"about",
-    component:AboutComponent
+    canActivate: [AuthActivate],
+    component:AboutComponent,
+    data: {
+      title: 'About Us',
+      loginRequired: false
+    }
   },
   {
     path:"**",
-    component:NotFoundComponent
+    component:NotFoundComponent,
+    data: {
+      title: 'Page Not Found',
+      loginRequired: false
+    }
   }
 ];
 

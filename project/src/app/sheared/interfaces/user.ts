@@ -24,3 +24,7 @@ export interface IUser{
     "university": string,
     "token": String,
   }
+
+  export interface bootUser{
+    users:IUser[]
+  }

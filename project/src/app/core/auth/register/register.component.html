@@ -9,19 +9,19 @@
   
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
   
-                  <form [formGroup]="form" class="mx-1 mx-md-4">
+                  <form [formGroup]="registerForm" (ngSubmit)="registerHandler()" class="mx-1 mx-md-4">
   
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input name="username" type="text" id="form3Example1c" class="form-control" />
-                        <label formControlName="username" id="username" class="form-label" for="form3Example1c">User Name</label>
+                        <input formControlName="username"  name="username" type="text" id="form3Example1c" class="form-control" />
+                        <label id="username" class="form-label" for="form3Example1c">User Name</label>
                         
-                        <ng-container [ngIf]='form.get("username")?.touched'>
-                          <p [ngIf]="form.get('username')?.errors?.['required']" class="error">
+                        <ng-container *ngIf="registerForm.get('username')?.touched">
+                          <p *ngIf="registerForm.get('username')?.errors?.['required']" class="error">
                             Username is required!
                           </p>
-                          <p *ngIf="form.get('username')?.errors?.['minlength']" class="error">
+                          <p *ngIf="registerForm.get('username')?.errors?.['minlength']" class="error">
                             Username should be longer than 5 chars
                           </p>
                         </ng-container>
@@ -31,13 +31,13 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input name="email" formControlName="email" type="email" id="form3Example3c" class="form-control" />
+                        <input name="email" formControlName="email" type="email" id="form3Example3c" placeholder="xxxxxx@gmail.com" class="form-control" />
                         <label class="form-label" for="form3Example3c">Your Email</label>
-                        <ng-container *ngIf='form.get("email")?.touched'>
-                          <p *ngIf="form.get('email')?.errors?.['required']"  class="alert alert-danger">
+                        <ng-container *ngIf='registerForm.get("email")!.errors'>
+                          <p *ngIf="registerForm.get('email')?.errors?.['required']" class="alert alert-danger">
                             Please enter a valid email address!
                           </p>
-                          <p class="error" *ngIf="form.get('email')?.errors?.['appEmailValidator']">
+                          <p class="error" *ngIf="registerForm.get('email')?.errors?.['appEmailValidator']">
                             Email is not valid!
                           </p>
                         </ng-container>
@@ -47,25 +47,30 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" formControlName="password" id="password" id="form3Example4c" class="form-control" />
+                        <input type="password" formControlName="password" id="password" id="form3Example4c" placeholder="*****"
+                         class="form-control" />
                         <label class="form-label" for="form3Example4c">Password</label>
-                        <ng-container *ngIf="form.get('pass')?.get('password')?.touched">>
-                          <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['required']">
+                        <ng-container *ngIf="registerForm.get('pass')?.get('password')?.errors?.['touched']">>
+                          <p class="error" 
+                          *ngIf="registerForm.get('pass')?.get('password')?.errors?.['required']">
                             Password is required!
                           </p>
-                          <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['minlength']">
+                          <p class="error" 
+                          *ngIf="registerForm.get('pass')?.get('password')?.errors?.['minlength']">
                             Password must be at least 5 characters!
                           </p>
-                        </ng-container>
+                         </ng-container>
                       </div>
                     </div>
   
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa fa-key fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input formControlName="rePassword" name="rePassword" id="form3Example4cd" class="form-control" />
+                        <input formControlName="rePassword" type="password" name="rePassword" placeholder="*****" id="form3Example4cd" class="form-control" />
                         <label class="form-label" for="form3Example4cd">Repeat your password</label>
-                      <ng-container class="alert alert-danger" *ngIf="form.get('pass')?.errors?.['sameValueGroupValidator'] && form.get('pass')?.get('rePassword')?.touched">
+                      <ng-container class="alert alert-danger" 
+                      *ngIf="registerForm.get('pass')?.get('rePassword')?.errors?.['sameValueGroupValidator'] &&
+                       registerForm.get('pass')?.get('rePassword')?.errors?.['touched']">
                           Passwords must be equal!
                       </ng-container>
                       </div>
@@ -80,7 +85,7 @@
                     </div>
   
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button [disabled]='form.invalid' (click)="registerHandler()" routerLink="/account" type="button" class="btn btn-primary btn-lg">Register</button>
+                      <button [disabled]='registerForm.invalid'  type="submit" class="btn btn-primary btn-lg">Register</button>
                     </div>
   
                   </form>

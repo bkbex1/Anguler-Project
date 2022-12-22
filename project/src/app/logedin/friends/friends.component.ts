@@ -23,8 +23,6 @@ export class FriendsComponent {
     this.userSurvise.getUsers().subscribe({
       next: (value)=>{
         this.users = value.users;
-        console.log(this.users)
-        // this.addingFriends(this.numOfFriends);
       },
       error:(err) =>{
         console.log(err)
@@ -32,11 +30,7 @@ export class FriendsComponent {
     })
   }
 
-  // addingFriends(numOfFriends:number):void{
-  //   for(;numOfFriends>0;numOfFriends--){
-  //     this.friends.push(this.users[Math.floor(Math.random()*10)])
-  //   }
-  // }
+
 
 
 }

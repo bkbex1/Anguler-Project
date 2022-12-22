@@ -1,2 +1,2 @@
-<app-loader *ngIf="isAuthenticating"></app-loader>
+<mat-spinner class="center" *ngIf="isAuthenticating"></mat-spinner>
 <ng-content *ngIf="!isAuthenticating"></ng-content>

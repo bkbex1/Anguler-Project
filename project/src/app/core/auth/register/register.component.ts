@@ -13,8 +13,9 @@ import { UserService } from '../../../user.service';
 export class RegisterComponent {
 
   appEmailDomains = ['bg', 'com'];
-  form = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(3)]],
+
+  registerForm = this.fb.group({
+    username: ['', [Validators.required, Validators.minLength(5)]],
     email: ['', [Validators.required, appEmailValidator(this.appEmailDomains)]],
     pass: this.fb.group({
       password: ['', [Validators.required, Validators.minLength(5)]],
@@ -29,12 +30,10 @@ export class RegisterComponent {
   }
 
   registerHandler() {
-    if(this.form.invalid){ return;}
-    const {username, email, pass:{ password, rePassword} ={}} = this.form.value
-
-    this.userService.register(username!,email!,password!,rePassword!)
+    if(this.registerForm.invalid){ return;}
+    const {username, email, pass:{ password, rePassword} ={}} = this.registerForm.value
+    this.userService.register(username!, email!, password!, rePassword!)
     .subscribe(user=>{ 
-      this.userService.user = user;
       this.router.navigate(["/account"])
     })
   }
