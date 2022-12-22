@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <div class="mb-3" *ngIf="users.length">
+            <div class="mb-3" *ngIf="!!users.length">
                 <h5 class="card-title">Contact List <span class="text-muted fw-normal ms-2">{{users.length}}</span></h5>
             </div>
         </div>
@@ -9,14 +9,14 @@
     <div *ngIf="!users">
         <mat-spinner></mat-spinner>
     </div>
-        <div *ngIf="users" class="row">
+    <div *ngIf="users" class="row">
             <div class="col-xl-3 col-sm-6" *ngFor="let user of users">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div><img src="https://bootdey.com/img/Content/avatar/avatar{{user.id}}.png" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>
+                            <div><img src="{{user.image}}" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>
                             <div class="flex-1 ms-3">
-                                <h5 class="font-size-16 mb-1"><a [routerLink]="['/friends', user.id]" class="text-dark">{{user.name}}</a></h5>
+                                <h5 class="font-size-16 mb-1"><a [routerLink]="['/friends', user.id]" class="text-dark">{{user.firstName}} {{user.maidenName}} {{user.lastName}}</a></h5>
                                 <span class="badge badge-soft-success mb-0">{{user.company.name}}</span>
                             </div>
                         </div>
@@ -24,13 +24,14 @@
                             <p class="text-muted mb-0"><i class="mdi mdi-phone font-size-15 align-middle pe-2 text-primary"></i> {{user.phone}}</p>
                             <p class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i> {{user.email}}</p>
                             <p class="text-muted mb-0 mt-2"><i class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"></i> {{user.address.city}}</p>
+                            <p class="text-muted mb-0 mt-2"><i class="fa fa-university font-size-15 align-middle pe-2 text-primary"></i> {{user.university}}</p>
                         </div>
                         <div class="d-flex gap-2 pt-4" *ngIf="isLogged">
                             <button type="button" [routerLink]="['/friends', user.id]" class="btn btn-soft-primary btn-sm w-50"><i class="bx bx-user me-1"></i> Profile</button>
                             <button type="button" class="btn btn-primary btn-sm w-50"><i class="bx bx-message-square-dots me-1"></i> Contact</button>
-                        </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
-    </div>
+</div>

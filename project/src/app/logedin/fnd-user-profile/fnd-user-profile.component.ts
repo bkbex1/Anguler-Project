@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPost, PostsService } from 'src/app/posts.service';
-import { IUser, UsersService } from 'src/app/users.service';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PostsService } from 'src/app/posts.service';
+import { UsersService } from '../../users.service';
 import { StorageService } from 'src/app/storage.service';
+import { IPost, IUser } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-fnd-user-profile',
@@ -26,8 +26,8 @@ export class FndUserProfileComponent implements OnInit{
     this.userSurvice.getUserById(id).subscribe((value)=>{
       this.friendUser = value;
     })
-    this.postService.getPosts().subscribe((value)=>{
-      this.fndPosts = value.filter(e=>e.userId==this.friendUser.id);
+    this.postService.getUserAllNewPosts(id).subscribe((value)=>{
+      this.fndPosts = value.posts;
     })
   }
 

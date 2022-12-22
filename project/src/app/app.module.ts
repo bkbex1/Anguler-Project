@@ -1,39 +1,45 @@
-import { NgModule } from '@angular/core';
+import { NgModule, TemplateRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { MainComponent } from './main/main.component';
-import { HomeComponent } from './core/home/home.component';
-import { ProfileComponent } from './logedin/profile/profile.component';
-import { AboutComponent } from './core/about/about.component';
-import { LogInComponent } from './core/log-in/log-in.component';
-import { RegisterComponent } from './core/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LogedinModule } from './logedin/logedin.module';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { FormsModule } from '@angular/forms';
-import { StorageService } from './storage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CoreModule } from './core/core.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { StorageService } from './storage.service';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AppComponent } from './app.component';
+import { ProfileComponent } from './logedin/profile/profile.component';
+import { LogInComponent } from './core/auth/log-in/log-in.component';
+import { RegisterComponent } from './core/auth/register/register.component';
+import { LogedinModule } from './logedin/logedin.module';
+import { MainComponent } from './core/main/main.component';
+import { AboutComponent } from './core/about/about.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { HeaderComponent } from './core/header/header.component';
+import { HomeComponent } from './core/home/home.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
+import { PostComponent } from './core/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    MainComponent,
-    HomeComponent,
     ProfileComponent,
-    AboutComponent,
     LogInComponent,
     RegisterComponent,
-    NotFoundComponent
+    MainComponent,
+    AboutComponent,
+    HomeComponent,
+    NotFoundComponent,
+    PostComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
+    CoreModule,
+    LogedinModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -41,10 +47,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+
   ],
   exports:[
-    HomeComponent,
+    AppComponent,
   ],
   providers: [ StorageService],
   bootstrap: [AppComponent]

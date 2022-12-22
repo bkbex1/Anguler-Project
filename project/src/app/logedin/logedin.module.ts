@@ -1,30 +1,26 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FndUserProfileComponent } from './fnd-user-profile/fnd-user-profile.component';
 import { FriendsComponent } from './friends/friends.component';
-import { PostComponent } from '../core/post/post.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { RouterModule } from '@angular/router';
 import { UserService } from '../user.service';
-import { HomeComponent } from '../core/home/home.component';
+import { RoutingModule } from '../routing/routing.module';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   declarations: [
     FndUserProfileComponent,
     FriendsComponent,
-    PostComponent,
   ],
   imports: [
-    CommonModule,
     MatProgressSpinnerModule,
+    CommonModule,
     RouterModule
   ],
   exports:[
     FndUserProfileComponent,
     FriendsComponent,
-    PostComponent,
-
   ], 
   providers:[
     UserService

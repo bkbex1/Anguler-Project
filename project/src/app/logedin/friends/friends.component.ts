@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IUser, UsersService } from 'src/app/users.service';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { UsersService } from '../../users.service';
 import { StorageService } from 'src/app/storage.service';
+import { IUser } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-friends',
@@ -22,8 +22,9 @@ export class FriendsComponent {
   ngOnInit(): void {
     this.userSurvise.getUsers().subscribe({
       next: (value)=>{
-        this.users = value;
-        this.addingFriends(this.numOfFriends);
+        this.users = value.users;
+        console.log(this.users)
+        // this.addingFriends(this.numOfFriends);
       },
       error:(err) =>{
         console.log(err)
@@ -31,11 +32,11 @@ export class FriendsComponent {
     })
   }
 
-  addingFriends(numOfFriends:number):void{
-    for(;numOfFriends>0;numOfFriends--){
-      this.friends.push(this.users[Math.floor(Math.random()*10)])
-    }
-  }
+  // addingFriends(numOfFriends:number):void{
+  //   for(;numOfFriends>0;numOfFriends--){
+  //     this.friends.push(this.users[Math.floor(Math.random()*10)])
+  //   }
+  // }
 
 
 }

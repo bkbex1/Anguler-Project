@@ -5,15 +5,15 @@
     <!-- Post header-->
     <header class="mb-4">
         <!-- Post title-->
-        <h1 class="fw-bolder mb-1">{{userPosts[postId].title}}</h1>
+        <h1 class="fw-bolder mb-1">{{userPost.title}}</h1>
         <!-- Post meta content-->
         <div class="text-muted fst-italic mb-2">Posted on January 1, 2022 by Start Bootstrap</div>
     </header>
     <!-- Preview image figure-->
-    <figure class="mb-4"><img class="img-fluid rounded" src="{{picture!.download_url}}" alt="..."></figure>
+    <figure class="mb-4"><img class="img-fluid rounded" src="{{picture.download_url}}" alt="..."></figure>
     <!-- Post content-->
     <section class="mb-5">
-        <p class="fs-5 mb-4">{{userPosts[postId].body}}</p>
+        <p class="fs-5 mb-4">{{userPost.body}}</p>
     
     </section>
 </article>
@@ -23,9 +23,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <div><img src="https://bootdey.com/img/Content/avatar/avatar{{user.id}}.png" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>
+                    <div><img src="{{user.image}}" alt="" class="avatar-md rounded-circle img-thumbnail" /></div>
                     <div class="flex-1 ms-3">
-                        <h5 class="font-size-16 mb-1">{{user.name}}</h5>
+                        <h5 class="font-size-16 mb-1">{{user.firstName}} {{user.maidenName}} {{user.lastName}}</h5>
                         <div class="badge badge-soft-success mb-0">{{user.company.name}}</div>
                     </div>
                 </div>

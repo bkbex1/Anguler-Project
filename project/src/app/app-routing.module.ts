@@ -2,22 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './core/about/about.component';
 import { HomeComponent } from './core/home/home.component';
-import { LogInComponent } from './core/log-in/log-in.component';
+import { LogInComponent } from './core/auth/log-in/log-in.component';
 import { PostComponent } from './core/post/post.component';
-import { RegisterComponent } from './core/register/register.component';
+import { RegisterComponent } from './core/auth/register/register.component';
 import { FndUserProfileComponent } from './logedin/fnd-user-profile/fnd-user-profile.component';
 import { FriendsComponent } from './logedin/friends/friends.component';
 import { ProfileComponent } from './logedin/profile/profile.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 import { UserService } from './user.service';
+import { StartResolver } from './core/start.resolver';
 
 const routes: Routes = [
   {
     path:"home",
+    resolve: {allPosts:StartResolver},
     component:HomeComponent,
-    data:{
-      // isLogged: userSurvies.isLogged;
-    }
   },
   {
     path:"",
@@ -44,7 +43,7 @@ const routes: Routes = [
     component:FndUserProfileComponent
   },
   {
-    path:"post/:id/:picId",
+    path:"post/:idPost/:picId",
     component:PostComponent
   },
   {

@@ -6,7 +6,7 @@
             <ol class="breadcrumb">
               <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> -->
               <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li> -->
-              <li class="breadcrumb-item active" aria-current="page">User Profile {{friendUser.name}}</li>
+              <li class="breadcrumb-item active" aria-current="page" *ngIf="friendUser">User Profile {{friendUser.firstName}}</li>
             </ol>
           </nav>
           <!-- /Breadcrumb -->
@@ -16,11 +16,11 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar{{friendUser.id}}.png" alt="Admin" class="rounded-circle" width="150">
+                    <img src="{{friendUser.image}}" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4>{{friendUser.name}}</h4>
+                      <h4>{{friendUser.firstName}} {{friendUser.maidenName}} {{friendUser.lastName}}</h4>
                       <p class="text-secondary mb-1">{{friendUser.company.name}}</p>
-                      <p class="text-muted font-size-sm">{{friendUser.address.city}} {{friendUser.address.street}}</p>
+                      <p class="text-muted font-size-sm">{{friendUser.address.city}} {{friendUser.address.address}}</p>
                       <div *ngIf="isLogged">
                         <button class="btn btn-primary">Follow</button>
                         <button class="btn btn-outline-primary">Message</button>
@@ -38,7 +38,7 @@
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{friendUser.name}}
+                      {{friendUser.firstName}} {{friendUser.lastName}}
                     </div>
                   </div>
                   <hr>
@@ -71,10 +71,10 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">WebSite</h6>
+                      <h6 class="mb-0">Gender</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{friendUser.website}}
+                      {{friendUser.gender}}
                     </div>
                   </div>
                   <hr>
@@ -83,7 +83,7 @@
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        {{friendUser.address.zipcode}} {{friendUser.address.city}} {{friendUser.address.street}} {{friendUser.address.suite}}
+                        {{friendUser.address.postalCode}} {{friendUser.address.city}} {{friendUser.address.address}} {{friendUser.address.state}}
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
                         <div class="col p-4 d-flex flex-column position-static">
                           <strong class="d-inline-block mb-2 text-success">{{friendUser.company.name}}</strong>
                           <h3 class="mb-0">{{post.title}}</h3>
-                          <div class="mb-1 text-muted">{{friendUser.name}}</div>
+                          <div class="mb-1 text-muted">{{friendUser.firstName}} {{friendUser.lastName}}</div>
                           <p class="mb-auto">{{post.body}}</p>
                           <a class="stretched-link">Continue reading</a>
                         </div>
@@ -105,7 +105,7 @@
               </div>
             </div>
             <div *ngIf="!fndPosts" class="">
-              <mat-spinner ></mat-spinner>
+              <mat-spinner></mat-spinner>
             </div>
         </div>
 
