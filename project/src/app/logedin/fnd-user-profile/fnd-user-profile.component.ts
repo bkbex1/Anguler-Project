@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostsService } from 'src/app/posts.service';
 import { UsersService } from '../../users.service';
 import { StorageService } from 'src/app/storage.service';
-import { IPost, IUser } from 'src/app/interfaces';
+import { IPost, IUser } from 'src/app/sheared/interfaces';
 
 @Component({
   selector: 'app-fnd-user-profile',

@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { StorageService } from './storage.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -43,7 +43,9 @@ import { PostComponent } from './core/post/post.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,

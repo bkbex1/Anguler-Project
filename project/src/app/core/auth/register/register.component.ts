@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { AbstractControl, NgForm, NgModel, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormBuilder, NgForm, NgModel,FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { appEmailValidator, sameValueGroupValidator } from 'src/app/sheared/validators';
 import { UserService } from '../../../user.service';
+
 
 @Component({
   selector: 'app-register',
@@ -9,19 +12,31 @@ import { UserService } from '../../../user.service';
 })
 export class RegisterComponent {
 
-  @ViewChild("registerForm") registerForm: NgForm | undefined
-  @ViewChild("name") name:NgModel | undefined
-  @ViewChild("email") email:NgModel | undefined
-  @ViewChild("password") password:NgModel | undefined
-  @ViewChild("rePassword") rePassword:NgModel | undefined
+  appEmailDomains = ['bg', 'com'];
+  form = this.fb.group({
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, appEmailValidator(this.appEmailDomains)]],
+    pass: this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      rePassword: []
+    }, {
+      validators: [sameValueGroupValidator('password', 'rePassword')]
+    })
+  });
 
 
-  userService?: UserService;
-  constructor(userService:UserService){
-    this.userService = userService;
+  constructor(private userService:UserService, private fb: FormBuilder, private router:Router){
   }
 
-  logInHandle(): void{
-    this.userService!.logIn()
+  registerHandler() {
+    if(this.form.invalid){ return;}
+    const {username, email, pass:{ password, rePassword} ={}} = this.form.value
+
+    this.userService.register(username!,email!,password!,rePassword!)
+    .subscribe(user=>{ 
+      this.userService.user = user;
+      this.router.navigate(["/account"])
+    })
   }
+
 }

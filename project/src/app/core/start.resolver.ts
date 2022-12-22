@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Resolve  } from "@angular/router";
-import { IPost } from "../interfaces";
+import { IPost } from "../sheared/interfaces";
 import { Post, PostsService } from "../posts.service";
 
 @Injectable({

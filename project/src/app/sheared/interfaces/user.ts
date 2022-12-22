@@ -22,4 +22,5 @@ export interface IUser{
     "postalCode": string,
     "state": string,
     "university": string,
+    "token": String,
   }

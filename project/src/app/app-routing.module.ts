@@ -11,6 +11,7 @@ import { ProfileComponent } from './logedin/profile/profile.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { UserService } from './user.service';
 import { StartResolver } from './core/start.resolver';
+import { AuthActivate } from './sheared/guards/auth.activate';
 
 const routes: Routes = [
   {
@@ -24,11 +25,21 @@ const routes: Routes = [
   },
   {
     path:"log-in",
-    component:LogInComponent
+    component:LogInComponent,
+    canActivate: [AuthActivate],
+    data: {
+      title: 'Login',
+      loginRequired: false
+    }
   }, 
   {
     path:"register",
-    component:RegisterComponent
+    component:RegisterComponent,
+    canActivate: [AuthActivate],
+    data: {
+      title: 'Register',
+      loginRequired: false
+    }
   },
   {
     path:"account",

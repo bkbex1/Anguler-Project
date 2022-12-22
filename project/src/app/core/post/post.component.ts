@@ -4,7 +4,7 @@ import { PostsService } from 'src/app/posts.service';
 import { UsersService } from '../../users.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { StorageService } from 'src/app/storage.service';
-import { IPic, IPost, IUser } from 'src/app/interfaces/index';
+import { IPic, IPost, IUser } from 'src/app/sheared/interfaces/index';
 
 @Component({
   selector: 'app-post',

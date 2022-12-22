@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../user.service';
 
 @Component({
@@ -11,16 +12,23 @@ import { UserService } from '../../../user.service';
 
 export class LogInComponent {
 
-  @ViewChild("logInForm") logInForm: NgForm | undefined
-  @ViewChild("email") email:NgModel | undefined
-  @ViewChild("pass") pass:NgModel | undefined
-  
-  userService?: UserService;
-  constructor(userService:UserService){
-    this.userService = userService;
+  @ViewChild(NgForm,{ static: true }) logInForm!: ElementRef<HTMLInputElement>;
+
+
+  constructor(private userService:UserService, private activatedRoute: ActivatedRoute, private router: Router){
   }
 
-  logInHandle(): void{
-    this.userService!.logIn()
+  logInHandle(logInForm:NgForm): void{
+    const {email, password} = logInForm.value;
+    this.userService.logIn(email, password).subscribe(user=>{
+      this.userService.user = user;
+      const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+      this.router.navigate([returnUrl]);
+    })
+
+    
+
   }
+
+
 }

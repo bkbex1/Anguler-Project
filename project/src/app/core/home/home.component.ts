@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Post, PostsService } from 'src/app/posts.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
-import { IPost } from 'src/app/interfaces/index';
+import { IPost } from 'src/app/sheared/interfaces/index';
 import { UsersService } from '../../users.service';
 
 @Component({

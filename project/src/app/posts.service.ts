@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPic, IPost } from './interfaces/index';
+import { IPic, IPost } from './sheared/interfaces/index';
 
 export interface Post{
   "posts":IPost[],
