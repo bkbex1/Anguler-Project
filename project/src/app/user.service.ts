@@ -21,7 +21,7 @@ export class UserService {
   subscription: Subscription;
 
 
-  get isLoggedIn():boolean {
+  public get isLoggedIn():boolean {
     return this.user !== null;
   }
 
@@ -31,6 +31,10 @@ export class UserService {
     });
   }
 
+  saveCanges(){
+    return this.http.get<any>('https://dummyjson.com/users/search?q='+name)
+    .pipe(tap(userBootWeb => this.user$$.next(userBootWeb.users[0])));
+  }
   logIn(name: string, password: string):Observable<bootUser>{
     return this.http.get<any>('https://dummyjson.com/users/search?q='+name)
     .pipe(tap(userBootWeb => this.user$$.next(userBootWeb.users[0])));

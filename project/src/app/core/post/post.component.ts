@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { PostsService } from 'src/app/posts.service';
 import { UsersService } from '../../users.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { StorageService } from 'src/app/storage.service';
 import { IPic, IPost, IUser } from 'src/app/sheared/interfaces/index';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-post',
@@ -13,6 +14,7 @@ import { IPic, IPost, IUser } from 'src/app/sheared/interfaces/index';
 })
 
 export class PostComponent implements OnInit{
+
   userPost!:IPost;
   user!:IUser;
   id!:string;
@@ -21,15 +23,17 @@ export class PostComponent implements OnInit{
   picture!:IPic;
   isLogged:boolean;
 
-  constructor(private activatedRoute:ActivatedRoute, private userSurvice:UsersService,
-    private postService:PostsService, private storage:StorageService){
-    this.isLogged = this.storage.getItem("isLogged")
+  constructor(private activatedRoute:ActivatedRoute, private usersSurvice:UsersService,
+    private postService:PostsService, private storage:StorageService, private userS:UserService,
+    private router: Router){
+    this.isLogged = this.userS.isLoggedIn
     this.postId = this.activatedRoute.snapshot.params['idPost'];
     this.picId = this.activatedRoute.snapshot.params['picId'];
   }
+
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['idPost'];
-    this.userSurvice.getUserById(this.id).subscribe((value)=>{
+    this.usersSurvice.getUserById(this.id).subscribe((value)=>{
       this.user = value;
     }),
     this.postService.getNewPost(this.postId).subscribe((value)=>{
@@ -40,7 +44,5 @@ export class PostComponent implements OnInit{
     })
 
   }
-
-  
 
 }

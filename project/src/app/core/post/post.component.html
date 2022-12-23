@@ -14,8 +14,9 @@
     <!-- Post content-->
     <section class="mb-5">
         <p class="fs-5 mb-4">{{userPost.body}}</p>
-    
     </section>
+    <button routerLink="/post/{{postId-1==0?60:postId-1}}/{{picId+1}}" class="btn btn-primary">Previous</button>
+    <button routerLink="/post/{{postId+1}}/{{picId+1}}" class="btn btn-primary">Next</button>
 </article>
 
     <div class="left">

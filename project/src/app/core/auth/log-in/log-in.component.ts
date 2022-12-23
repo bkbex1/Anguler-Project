@@ -26,12 +26,10 @@ export class LogInComponent {
       if(this.user.password && this.user.password==password && this.user.username==name) {
         this.userService.user$$.next(this.user)
         this.router.navigate(["/account"]);
-
       }else{
-        alert("No such User")
+        alert("No such user");
         this.router.navigate(["/log-in"]);
         this.userService.user$$.next(null)
-
       }
       
 
