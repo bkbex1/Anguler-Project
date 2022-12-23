@@ -14,7 +14,7 @@ export class UserService {
   user: IUser | null = null;
   bootUser:bootUser|null = null;
   
-  private user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
+  public user$$ = new BehaviorSubject<undefined | null | IUser>(undefined);
   user$ = this.user$$.asObservable().pipe(
     filter((val): val is IUser | null => val !== undefined)
   );
@@ -26,15 +26,16 @@ export class UserService {
   }
 
   constructor(private storage:StorageService, private http:HttpClient) { 
-    this.subscription = this.user$.pipe(filter((val):val is IUser|null=>val!==undefined)).subscribe(user => {
+    this.subscription = this.user$.subscribe(user => {
       this.user = user;
     });
   }
 
-  logIn(name: string, password: string):Observable<IUser>{
+  logIn(name: string, password: string):Observable<bootUser>{
+    return this.http.get<any>('https://dummyjson.com/users/search?q='+name)
+    .pipe(tap(userBootWeb => this.user$$.next(userBootWeb.users[0])));
 
-    return this.http.get<IUser>('https://dummyjson.com/users/search?q='+name)
-    .pipe(tap(user => this.user$$.next(user)));;
+
 
     // return this.http.post<IUser>('https://dummyjson.com/auth/login', { email, password });
 
@@ -49,7 +50,6 @@ export class UserService {
 
   logOut():void{
     this.user$$.next(null)
-    this.user = null;
   }
 
   register(username: string, email: string, password: string, rePassword: string) {
@@ -61,11 +61,11 @@ export class UserService {
   }
 
   getProfile() {
-    return this.http.get<bootUser>('https://dummyjson.com/users/search?q='+"Terry")
+    return this.http.get<IUser>('https://dummyjson.com/users/'+this.user?.id)
     // return this.http.get<IUser>('https://dummyjson.com/auth/login')
       .pipe(
         tap(user => {
-          this.user$$.next(user.users[0])
+          this.user$$.next(user)
         }),
         catchError((err) => {
           this.user$$.next(null);

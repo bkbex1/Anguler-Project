@@ -10,6 +10,9 @@ export class AuthActivate implements CanActivate {
 
   constructor(private userService: UserService, private router: Router) { }
 
+  // canActivate():boolean{
+  //   return true
+  // }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
    boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.userService.user$.pipe(
@@ -17,13 +20,7 @@ export class AuthActivate implements CanActivate {
       map(user => {
         const loginRequired = route.data['loginRequired'];
         if (loginRequired === undefined || !!user === loginRequired) { return true; }
-        const returnUrl = route.url.map(u => u.path).join('/');
-        return !!user ?
-          this.router.createUrlTree(['/account']
-          ,{ queryParams: { returnUrl } }) 
-          :
-          this.router.createUrlTree(['/log-in']
-          , { queryParams: { returnUrl } });
+        return !!user
       })
     );
   }

@@ -18,10 +18,10 @@
                         <label id="username" class="form-label" for="form3Example1c">User Name</label>
                         
                         <ng-container *ngIf="registerForm.get('username')?.touched">
-                          <p *ngIf="registerForm.get('username')?.errors?.['required']" class="error">
+                          <p *ngIf="registerForm.get('username')?.errors?.['required']" class="alert alert-danger">
                             Username is required!
                           </p>
-                          <p *ngIf="registerForm.get('username')?.errors?.['minlength']" class="error">
+                          <p *ngIf="registerForm.get('username')?.errors?.['minlength']" class="alert alert-danger">
                             Username should be longer than 5 chars
                           </p>
                         </ng-container>
@@ -33,7 +33,7 @@
                       <div class="form-outline flex-fill mb-0">
                         <input name="email" formControlName="email" type="email" id="form3Example3c" placeholder="xxxxxx@gmail.com" class="form-control" />
                         <label class="form-label" for="form3Example3c">Your Email</label>
-                        <ng-container *ngIf='registerForm.get("email")!.errors'>
+                        <ng-container *ngIf='registerForm.get("email")!.touched'>
                           <p *ngIf="registerForm.get('email')?.errors?.['required']" class="alert alert-danger">
                             Please enter a valid email address!
                           </p>

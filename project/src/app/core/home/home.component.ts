@@ -14,7 +14,9 @@ import { UsersService } from '../../users.service';
   providedIn: 'root'
 })
 export class HomeComponent implements OnInit{
-  allPosts!:IPost[];
+  allPosts:IPost[] = [];
+  postsBfrStart!:IPost[];
+
   isLoaded:boolean = false;
   
   findUserPosts(userId:number){
@@ -24,18 +26,16 @@ export class HomeComponent implements OnInit{
   constructor(private postSurvice:PostsService){
     this.postSurvice.getNewPosts().subscribe({
       next: (value)=>{
-        this.allPosts = value.posts
-        this.addPictures(this.allPosts);
+        this.postsBfrStart = value.posts
+        this.addPictures(this.postsBfrStart);
       },      
       error:(err) =>{
         console.log(err)
       }
     });
-    
-
   }
-  addPictures(allPosts:IPost[]):void{
-    for(let post of  this.allPosts){
+  addPictures(postsBfrStart:IPost[]):void{
+    for(let post of postsBfrStart){
       let number = Math.floor(Math.random()*29);
       this.postSurvice.getPic(number).subscribe({
         next: (value)=>{
@@ -43,7 +43,8 @@ export class HomeComponent implements OnInit{
         }
       })
     }
-    this.isLoaded = true;
+    this.allPosts = this.postsBfrStart;
+    console.log(this.allPosts)
   }
   ngOnInit(): void {
 

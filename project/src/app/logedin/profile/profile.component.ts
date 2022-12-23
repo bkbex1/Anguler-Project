@@ -13,7 +13,7 @@ export class ProfileComponent {
   constructor(private userService:UserService){
     userService.getProfile().subscribe({
       next:(user)=>{
-        this.myProfile = user.users[0];
+        this.myProfile = user;
       }
     })
   }
